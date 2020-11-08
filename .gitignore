@@ -1,5 +1,6 @@
-./.ionide/*
-./bin/*
-./obj/*
-./packages-microsoft-prod.deb
-./notes.txt
+.ionide/*
+bin/*
+obj/*
+packages-microsoft-prod.deb
+notes.txt
+fsharp.fsproj
