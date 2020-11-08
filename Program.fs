@@ -1,15 +1,24 @@
 ﻿// Learn more about F# at http://fsharp.org
 // The code here is used as demonstration code on Derek Banas's YouTube channel: https://www.youtube.com/watch?v=c7eNDJN758U
+//   This leaves off at 22min 00sec
 
 
 open System
 
+// Exceptions example
+
+exception ClaysError of string
+
 let hello() = 
-    printf "Enter your name: "
+    printf "Enter your name: " 
 
     let name = Console.ReadLine()   // Reads line from console
-
-    printfn "Hello, %s" name        // Statically-typed print %s => string, this operates in a similar way to C
+    
+    // If the user is Clay, then raise an error
+    if name = "Clay" then 
+        raise ( ClaysError("I don't like you, Clay. I'm exiting...") )
+    else
+        printfn "Hello, %s" name        // Statically-typed print %s => string, this operates in a similar way to C
 
 let paddingexample() = 
     printfn "%-10s %10s" "col 1" "col 2"
@@ -71,7 +80,13 @@ let dofuncs() =
 let main argv =
     printfn "Hello World from F#!"
 
-    hello()
+    // Hello throws an error because it hates me
+    try
+        hello()
+    with
+    | ClaysError(str) -> printfn "ClaysError: %s" str ; exit( 1 )
+
+
     paddingexample()
     bindstuff()
     dofuncs()
