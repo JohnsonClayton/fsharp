@@ -56,7 +56,6 @@ let dofuncs() =
     printfn "Normal list: %A" randlist
     printfn "Doubled list: %A" randlist2
 
-
     // Piping operations 
     //  We have this integer list, then we filter off all the values that are even (v%2)=0 is True,
     // then, we take all of the values resulting from this, double them, then pass them to printfn
@@ -64,7 +63,6 @@ let dofuncs() =
     |> List.filter( fun v -> (v % 2) = 0 )
     |> List.map( fun x -> x * 2)
     |> printfn "Even numbers doubled: %A" 
-
 
     // Weird function stuff
     let multnum x = x * 3
@@ -75,6 +73,23 @@ let dofuncs() =
 
     printfn "multiply then add: %i" (multadd 10)
     printfn "add then multiple: %i" (addmult 10)
+
+// This demonstrates how you can overwrite variables that are immutable
+let powerfour x:int = 
+    let x = x*x
+
+    // This will fail because 'x' is not mutable, thus we cannot change it
+    //x <- 5
+
+    // This will not do what we expect because it is actually a boolean operation
+    //x = 5
+
+    // If we define x here, it will do what we would expect the code above to do for
+    //  a mutable type
+    let x = x*x
+
+    // Returns this to the calling function
+    x
 
 [<EntryPoint>]
 let main argv =
@@ -90,6 +105,11 @@ let main argv =
     paddingexample()
     bindstuff()
     dofuncs()
+
+    let x = 3
+    Console.WriteLine( System.String.Format( "{0} to the power of four is {1}", x, powerfour(x) ) )
+
+    printfn "x is %d" x
 
     printf "To exit, press any key...\n"
     Console.ReadKey() |> ignore   // Will spin until keypress occurs
