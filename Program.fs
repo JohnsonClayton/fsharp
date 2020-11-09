@@ -108,8 +108,15 @@ let main argv =
 
     let x = 3
     Console.WriteLine( System.String.Format( "{0} to the power of four is {1}", x, powerfour(x) ) )
-
     printfn "x is %d" x
+
+    let addtwo x = 
+        x+2
+
+    // Demonstrate this cool feature
+    let x = 2
+    let new_x = ( addtwo >> powerfour ) x
+    Console.WriteLine( System.String.Format( "( {0} + 2 ) to the power of four is {1}", x, new_x ))
 
     printf "To exit, press any key...\n"
     Console.ReadKey() |> ignore   // Will spin until keypress occurs
