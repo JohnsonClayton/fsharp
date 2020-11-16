@@ -27,3 +27,4 @@ $ dotnet new console --language F#
 $ dotnet run
 ```
 
+F Sharp Demo Material: [here](http://tomasp.net/blog/fsharp-parallel-samples.aspx/)
